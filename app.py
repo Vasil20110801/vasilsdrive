@@ -1,6 +1,12 @@
 from flask import Flask, request, redirect, url_for, render_template, send_from_directory, session
 import os
 
+import os
+
+UPLOAD_FOLDER = 'uploads'
+
+# Създава папката, ако не съществува
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
 
