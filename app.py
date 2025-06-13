@@ -3,7 +3,7 @@ import os
 
 import os
 
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
 
 # Създава папката, ако не съществува
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
