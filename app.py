@@ -1,12 +1,16 @@
 import os
 from flask import Flask, render_template, request, redirect, send_from_directory
 import os
-UPLOAD_FOLDER = "uploads"
 
-# Създай папката ако няма такава
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
+UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
+
+if os.path.exists(UPLOAD_FOLDER):
+    if not os.path.isdir(UPLOAD_FOLDER):
+        # Ако съществува, но не е папка, изтрий файла и направи папка
+        os.remove(UPLOAD_FOLDER)
+        os.makedirs(UPLOAD_FOLDER)
 else:
+    os.makedirs(UPLOAD_FOLDER)
     # Ако съществува, провери дали е директория
     if not os.path.isdir(UPLOAD_FOLDER):
         raise Exception(f"{UPLOAD_FOLDER} съществува, но не е директория!")
