@@ -3,11 +3,17 @@ from flask import Flask, render_template, request, redirect, send_from_directory
 
 app = Flask(__name__)
 
-# Настройка на папка за качени файлове
-UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+import os
 
+UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
+
+if os.path.exists(UPLOAD_FOLDER):
+    if not os.path.isdir(UPLOAD_FOLDER):
+        # Ако съществува, но не е папка, изтрий файла и направи папка
+        os.remove(UPLOAD_FOLDER)
+        os.makedirs(UPLOAD_FOLDER)
+else:
+    os.makedirs(UPLOAD_FOLDER)
 # Начална страница – списък с файлове
 @app.route('/')
 def index():
