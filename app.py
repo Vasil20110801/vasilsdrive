@@ -1,5 +1,15 @@
 import os
 from flask import Flask, render_template, request, redirect, send_from_directory
+import os
+
+UPLOAD_FOLDER = 'uploads'
+
+# Ако папката не съществува — създай я
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+# След това може безопасно да четеш файловете
+files = os.listdir(UPLOAD_FOLDER)
 
 app = Flask(__name__)
 
