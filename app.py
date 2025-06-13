@@ -4,8 +4,6 @@ import os
 import os
 
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
-
-# Създава папката, ако не съществува
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
